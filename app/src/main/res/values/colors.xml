@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+
+    <!-- Crouton notifications -->
+    <color name="notification_text_info">@android:color/white</color>
+    <color name="notification_background_info">#2d3133</color>
+    <color name="notification_text_warning">#2d3133</color>
+    <color name="notification_background_warning">#e1a900</color>
+    <color name="notification_text_error">@android:color/white</color>
+    <color name="notification_background_error">#dd2524</color>
+    <color name="notification_text_goodnews">@android:color/white</color>
+    <color name="notification_background_goodnews">#00a550</color>
+
+
 </resources>

@@ -1,11 +1,9 @@
 package com.armoz.drawertemplate.helloWorld.view.controller;
 
-import android.view.View;
-
 import com.armoz.drawertemplate.helloWorld.domain.callback.HelloWorldCallback;
 import com.armoz.drawertemplate.helloWorld.domain.model.HelloWorldDomainModel;
 import com.armoz.drawertemplate.helloWorld.domain.usercase.HelloWorld;
-import com.armoz.drawertemplate.helloWorld.view.activity.HelloWorldActivity;
+import com.armoz.drawertemplate.helloWorld.domain.usercase.HelloWorldValidator;
 import com.armoz.drawertemplate.helloWorld.view.mapper.HelloWorldMapper;
 import com.armoz.drawertemplate.helloWorld.view.model.HelloWorldViewModel;
 
@@ -29,37 +27,53 @@ public class HelloWorldController {
 
     private HelloWorldMapper helloWorldMapper;
 
-    private HelloWorldActivity activity;
+    private HelloWorldValidator helloWorldValidator;
+
 
     @Inject
-    public HelloWorldController(HelloWorld helloWorldJob, HelloWorldMapper helloWorldMapper){
+    public HelloWorldController(HelloWorld helloWorldJob, HelloWorldMapper helloWorldMapper, HelloWorldValidator helloWorldValidator) {
         this.helloWorldJob = helloWorldJob;
         this.helloWorldMapper = helloWorldMapper;
+        this.helloWorldValidator = helloWorldValidator;
     }
 
     public HelloWorldViewModel getViewModel() {
         return viewModel;
     }
 
-    public void saveName(HelloWorldViewModel helloWorldViewModel){
+    public void saveName(HelloWorldViewModel helloWorldViewModel) {
+
         model.setName(helloWorldViewModel.getName());
-        helloWorldJob.saveName(model, helloWorldCallback);
+
+        if (helloWorldValidator.isValidHelloWorld(model)) {
+            helloWorldJob.saveName(model, helloWorldCallback);
+
+        } else {
+            view.onError();
+        }
     }
 
     private HelloWorldCallback helloWorldCallback = new HelloWorldCallback() {
         @Override
         public void onSaveNameCompleted(HelloWorldDomainModel helloWorldDomainModel) {
-            activity.onSaveNameCompleted(helloWorldMapper.convert(helloWorldDomainModel));
+            viewModel = helloWorldMapper.convert(helloWorldDomainModel);
+            view.onSaveNameCompleted(viewModel);
+        }
+
+        @Override
+        public void onError() {
+            view.onError();
         }
 
     };
 
-    public void setActivity(HelloWorldActivity helloWorldActivity) {
-        this.activity = helloWorldActivity;
-    }
 
-    public interface Activity {
-        void onSaveNameCompleted(HelloWorldViewModel helloWorldViewModel);
+    public interface View {
+
+        public void onSaveNameCompleted(HelloWorldViewModel helloWorldViewModel);
+
+        public void onError();
+
     }
 
 }

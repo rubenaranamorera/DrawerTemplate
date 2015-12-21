@@ -3,7 +3,9 @@ package com.armoz.drawertemplate.base.view.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
+import android.util.Log;
 
+import com.armoz.drawertemplate.R;
 import com.armoz.drawertemplate.base.application.BaseApplication;
 import com.armoz.drawertemplate.base.domain.events.ErrorEvent;
 import com.armoz.drawertemplate.base.view.errors.ViewErrorEvent;
@@ -25,7 +27,7 @@ abstract public class BaseActivity extends AppCompatActivity implements ViewErro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inject(this);
-        setContentView(getContentViewBase());
+        setContentView(getActivityLayout());
     }
 
     protected void injectButterknife(){
@@ -44,8 +46,15 @@ abstract public class BaseActivity extends AppCompatActivity implements ViewErro
         ((BaseApplication) getApplication()).inject(object);
     }
 
-    abstract public int getContentViewBase();
+
+    public void onError(ErrorEvent event) {
+        Log.e("ERROR", event.getClass().getSimpleName() + " - " + event.getMessage());
+    }
 
     protected abstract boolean showError(ErrorEvent event);
+
+    protected int getActivityLayout() {
+        return R.layout.activity_base;
+    };
 
 }

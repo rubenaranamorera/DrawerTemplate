@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notification_root"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#2d3133"
+    android:orientation="horizontal">
+
+<!--android:minHeight="@dimen/user_notification_min_height"-->
+
+    <TextView
+        android:id="@+id/notification_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#ffffffff" />
+
+    <!--
+              <com.infojobs.app.base.view.widget.CustomFontTextView
+
+
+          android:padding="@dimen/gap_high"
+             style="@style/text_normal"-->
+
+
+</LinearLayout>

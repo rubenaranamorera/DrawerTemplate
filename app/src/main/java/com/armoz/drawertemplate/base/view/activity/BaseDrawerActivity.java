@@ -16,16 +16,6 @@ public abstract class BaseDrawerActivity extends BaseToolbarActivity implements 
         setupDrawer();
     }
 
-    @Override
-    public int getContentViewToolbar() {
-        return getContentViewDrawer();
-    }
-
-    @Override
-    public int getContentViewBase() {
-        return R.layout.activity_main;
-    }
-
     public void setupDrawer() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -72,5 +62,8 @@ public abstract class BaseDrawerActivity extends BaseToolbarActivity implements 
         return true;
     }
 
-    abstract public int getContentViewDrawer() ;
+    @Override
+    protected int getActivityLayout() {
+        return R.layout.activity_base_drawer;
+    }
 }

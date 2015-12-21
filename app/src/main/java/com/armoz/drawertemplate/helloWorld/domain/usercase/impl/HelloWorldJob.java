@@ -24,13 +24,13 @@ public class HelloWorldJob extends UserCaseJob implements HelloWorld {
     @Inject
     HelloWorldJob(JobManager jobManager, MainThread mainThread,
                   DomainErrorHandler domainErrorHandler, HelloWorldDataSource helloWorldDataSource
-    ){
+    ) {
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.helloWorldDataSource = helloWorldDataSource;
     }
 
     @Override
-    public void saveName(HelloWorldDomainModel helloWorldDomainModel, HelloWorldCallback callback ) {
+    public void saveName(HelloWorldDomainModel helloWorldDomainModel, HelloWorldCallback callback) {
         this.callback = callback;
         this.helloWorldDomainModel = helloWorldDomainModel;
         jobManager.addJob(this);
@@ -38,11 +38,27 @@ public class HelloWorldJob extends UserCaseJob implements HelloWorld {
 
     @Override
     public void doRun() throws Throwable {
-        HelloWorldDomainModel response = helloWorldDataSource.saveName(helloWorldDomainModel);
-        onSaveNameCompleted(response);
+        try {
+            HelloWorldDomainModel response = helloWorldDataSource.saveName(helloWorldDomainModel);
+            onSaveNameCompleted(response);
+        }
+        catch (Exception e){
+            notifyError();
+        }
     }
 
-    private void onSaveNameCompleted(final HelloWorldDomainModel helloWorldDomainModel){
+    private void notifyError() {
+        sendCallback(new Runnable() {
+            @Override
+            public void run() {
+                if (callback != null) {
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+    private void onSaveNameCompleted(final HelloWorldDomainModel helloWorldDomainModel) {
         sendCallback(new Runnable() {
             @Override
             public void run() {

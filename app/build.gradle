@@ -1,9 +1,16 @@
 buildscript {
+
     repositories {
         mavenCentral()
     }
+
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+    }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.hugo'
+
 
 android {
     compileSdkVersion 23
@@ -57,5 +64,8 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
     testCompile 'junit:junit:4.12'
 }

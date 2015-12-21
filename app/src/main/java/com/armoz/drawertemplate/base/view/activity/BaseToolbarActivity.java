@@ -2,9 +2,7 @@ package com.armoz.drawertemplate.base.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.armoz.drawertemplate.R;
 
@@ -13,16 +11,7 @@ public abstract class BaseToolbarActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-        LayoutInflater.from(this).inflate(getContentViewToolbar(), frameLayout, true);
-
         setSupportActionBar(getToolbar());
-    }
-
-    @Override
-    public int getContentViewBase() {
-       return R.layout.app_bar_main;
     }
 
     @Override
@@ -44,5 +33,10 @@ public abstract class BaseToolbarActivity extends BaseActivity {
         return (Toolbar) findViewById(R.id.toolbar);
     }
 
-    abstract public int getContentViewToolbar() ;
+    @Override
+    protected int getActivityLayout() {
+        return R.layout.activity_base_toolbar;
+    }
+
+
 }
