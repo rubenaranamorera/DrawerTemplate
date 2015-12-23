@@ -12,17 +12,16 @@ public class ViewErrorHandler {
     private Bus bus;
     ViewErrorEvent errorEvent;
 
-
     public ViewErrorHandler(Bus bus, ViewErrorEvent errorEvent) {
         this.bus = bus;
         this.errorEvent = errorEvent;
     }
 
-    public void register(){
+    public void register() {
         bus.register(this);
     }
 
-    public void unregister(){
+    public void unregister() {
         bus.unregister(this);
     }
 
@@ -30,7 +29,6 @@ public class ViewErrorHandler {
     public void onErrorEvent(ErrorEvent event) {
         errorEvent.onError(event);
     }
-
 
 }
 

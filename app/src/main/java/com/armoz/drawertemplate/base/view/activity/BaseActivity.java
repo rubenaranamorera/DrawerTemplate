@@ -2,7 +2,6 @@ package com.armoz.drawertemplate.base.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.appcompat.BuildConfig;
 import android.util.Log;
 
 import com.armoz.drawertemplate.R;
@@ -13,8 +12,6 @@ import com.armoz.drawertemplate.base.view.errors.ViewErrorHandler;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
 
 abstract public class BaseActivity extends AppCompatActivity implements ViewErrorEvent {
 
@@ -28,12 +25,6 @@ abstract public class BaseActivity extends AppCompatActivity implements ViewErro
         super.onCreate(savedInstanceState);
         inject(this);
         setContentView(getActivityLayout());
-    }
-
-    protected void injectButterknife(){
-        ButterKnife.setDebug(BuildConfig.DEBUG);
-        ButterKnife.bind(this);
-        viewErrorHandler = new ViewErrorHandler(bus, this);
     }
 
     @Override
@@ -55,6 +46,6 @@ abstract public class BaseActivity extends AppCompatActivity implements ViewErro
 
     protected int getActivityLayout() {
         return R.layout.activity_base;
-    };
+    }
 
 }

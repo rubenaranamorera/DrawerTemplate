@@ -38,5 +38,4 @@ public abstract class BaseToolbarActivity extends BaseActivity {
         return R.layout.activity_base_toolbar;
     }
 
-
 }

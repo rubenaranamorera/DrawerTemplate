@@ -18,7 +18,4 @@ public class DomainErrorHandler {
         bus.post(errorObject);
     }
 
-
-
-
 }

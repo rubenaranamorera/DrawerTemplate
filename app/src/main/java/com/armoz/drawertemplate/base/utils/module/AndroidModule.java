@@ -49,6 +49,10 @@ public class AndroidModule {
     Context provideApplicationContext() {
         return application;
     }
-    @Provides @Singleton
-    Bus provideBusProvider() {	return new MainThreadBus(); }
+
+    @Provides
+    @Singleton
+    Bus provideBusProvider() {
+        return new MainThreadBus();
+    }
 }

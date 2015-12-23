@@ -8,22 +8,20 @@ import com.armoz.drawertemplate.helloWorld.view.model.HelloWorldViewModel;
  */
 public class HelloWorldMapper {
 
+    public HelloWorldMapper() {
+    }
 
+    public HelloWorldDomainModel convert(HelloWorldViewModel src) {
+        HelloWorldDomainModel helloWorldDomainModel = new HelloWorldDomainModel();
+        helloWorldDomainModel.setName(src.getName());
+        return helloWorldDomainModel;
+    }
 
-	public HelloWorldMapper() {
-	}
-
-	public HelloWorldDomainModel convert (HelloWorldViewModel src) {
-		HelloWorldDomainModel helloWorldDomainModel = new HelloWorldDomainModel();
-		helloWorldDomainModel.setName(src.getName());
-		return helloWorldDomainModel;
-	}
-
-	public HelloWorldViewModel convert (HelloWorldDomainModel src) {
-		HelloWorldViewModel helloWorldViewModel = new HelloWorldViewModel();
-		helloWorldViewModel.setName(src.getName());
-		helloWorldViewModel.setUpperName(src.getName().toUpperCase());
-		return helloWorldViewModel;
-	}
+    public HelloWorldViewModel convert(HelloWorldDomainModel src) {
+        HelloWorldViewModel helloWorldViewModel = new HelloWorldViewModel();
+        helloWorldViewModel.setName(src.getName());
+        helloWorldViewModel.setUpperName(src.getName().toUpperCase());
+        return helloWorldViewModel;
+    }
 
 }

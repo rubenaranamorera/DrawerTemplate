@@ -14,7 +14,7 @@ import javax.inject.Inject;
 public class HelloWorldDataSourceFromBBDD implements HelloWorldDataSource {
 
     @Inject
-    public HelloWorldDataSourceFromBBDD(){
+    public HelloWorldDataSourceFromBBDD() {
     }
 
     @Override
@@ -27,7 +27,6 @@ public class HelloWorldDataSourceFromBBDD implements HelloWorldDataSource {
         HelloWorldDomainModel s = convert(helloWorldDDBBModel);
 
         return s;
-
 
     }
 

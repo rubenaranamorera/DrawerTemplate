@@ -17,7 +17,7 @@ public class HelloWorldDomainModule {
     }
 
     @Provides
-    public HelloWorldValidator provideHelloWorldValidator (Bus bus){
+    public HelloWorldValidator provideHelloWorldValidator(Bus bus) {
         return new HelloWorldValidator(bus);
     }
 }

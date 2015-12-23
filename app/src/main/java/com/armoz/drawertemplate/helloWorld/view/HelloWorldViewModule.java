@@ -23,7 +23,7 @@ public class HelloWorldViewModule {
 
     @Provides
     public HelloWorldMapper provideHelloWorldMapper() {
-            return new HelloWorldMapper();
+        return new HelloWorldMapper();
     }
 
     @Provides

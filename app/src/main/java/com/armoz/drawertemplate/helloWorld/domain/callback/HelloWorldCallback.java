@@ -7,6 +7,8 @@ import com.armoz.drawertemplate.helloWorld.domain.model.HelloWorldDomainModel;
  *
  */
 public interface HelloWorldCallback {
-	void onSaveNameCompleted(HelloWorldDomainModel helloWorldDomainModel);
-	void onError();
+
+    void onSaveNameCompleted(HelloWorldDomainModel helloWorldDomainModel);
+
+    void onError();
 }

@@ -6,14 +6,13 @@ package com.armoz.drawertemplate.base.domain.events;
 public class ErrorEvent {
 
     public static final int ACTION_NO_ACTION = 0;
-    public static final int ACTION_REDIRECT_TO_LOGIN = 1;
-    public static final int ACTIONS_REQUEST_NEW_SCOPES = 2;
     public static Exception exception;
 
     private String message;
     private int action = ACTION_NO_ACTION;
 
-    public ErrorEvent() {}
+    public ErrorEvent() {
+    }
 
     public ErrorEvent(Exception exception) {
         this.exception = exception;
@@ -38,9 +37,13 @@ public class ErrorEvent {
         this.message = message;
     }
 
-    public int getAction() { return action; }
+    public int getAction() {
+        return action;
+    }
 
-    public void setAction(int action) { this.action = action; }
+    public void setAction(int action) {
+        this.action = action;
+    }
 
     public static Exception getException() {
         return exception;

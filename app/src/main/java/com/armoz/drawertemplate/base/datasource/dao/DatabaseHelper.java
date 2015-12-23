@@ -35,7 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, HelloWorldDDBBModel.class);
-           } catch (SQLException e) {
+        } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
         }
@@ -51,7 +51,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     }
 
-    public void clearAllTables(){
+    public void clearAllTables() {
         clearTable(HelloWorldDDBBModel.class);
     }
 

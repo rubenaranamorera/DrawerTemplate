@@ -9,6 +9,7 @@ public class GeneralErrorEvent extends ErrorEvent {
     public GeneralErrorEvent(String error) {
         super(error);
     }
+
     public GeneralErrorEvent(Exception exception) {
         super(exception);
     }

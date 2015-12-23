@@ -1,8 +1,8 @@
 package com.armoz.drawertemplate.base.view.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.armoz.drawertemplate.base.domain.events.ErrorEvent;

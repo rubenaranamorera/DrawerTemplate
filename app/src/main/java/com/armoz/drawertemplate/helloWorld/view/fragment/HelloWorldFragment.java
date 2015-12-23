@@ -1,6 +1,8 @@
 package com.armoz.drawertemplate.helloWorld.view.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,6 @@ import android.widget.TextView;
 
 import com.armoz.drawertemplate.R;
 import com.armoz.drawertemplate.base.domain.events.ErrorEvent;
-import com.armoz.drawertemplate.base.domain.events.GeneralErrorEvent;
-import com.armoz.drawertemplate.base.view.errors.UserNotificator;
 import com.armoz.drawertemplate.base.view.fragment.BaseFragment;
 import com.armoz.drawertemplate.helloWorld.view.controller.HelloWorldController;
 import com.armoz.drawertemplate.helloWorld.view.model.HelloWorldViewModel;
@@ -60,7 +60,7 @@ public class HelloWorldFragment extends BaseFragment implements HelloWorldContro
 
     @Override
     public boolean showError(ErrorEvent event) {
-        UserNotificator.show(getActivity(), UserNotificator.buildNotificationForError(getActivity(), new GeneralErrorEvent("ERROR")));
+        createSnackbarError();
         return false;
     }
 
@@ -90,8 +90,24 @@ public class HelloWorldFragment extends BaseFragment implements HelloWorldContro
 
     @Override
     public void onError() {
+        createSnackbarError();
         helloNameTV.setVisibility(View.GONE);
-        UserNotificator.show(getActivity(), UserNotificator.buildNotificationForError(getActivity(), new GeneralErrorEvent("ERROR")));
     }
 
+
+    private void createSnackbarError() {
+        Snackbar snackbar = Snackbar.make(
+                rootView,
+                "Error message",
+                Snackbar.LENGTH_LONG);
+
+        //No action created
+        snackbar.setAction("Action", null);
+        snackbar.getView().setBackgroundColor(Color.RED);
+
+        TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
+
+        snackbar.show();
+    }
 }
