@@ -8,6 +8,10 @@ import com.armoz.drawertemplate.helloWorld.datasource.HelloWorldDataSourceModule
 import com.armoz.drawertemplate.helloWorld.domain.HelloWorldDomainModule;
 import com.armoz.drawertemplate.helloWorld.view.HelloWorldViewModule;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.ndk.CrashlyticsNdk;
+import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Answers(), new Crashlytics(), new CrashlyticsNdk());
 
         graph = ObjectGraph.create(getModules().toArray());
         graph.injectStatics();
